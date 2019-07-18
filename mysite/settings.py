@@ -18,8 +18,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # 蓝鲸注册信息
-APP_ID = ' your app id' # 请在 蓝鲸开发者中心 -》点击应用ID -》基本信息 -》注册信息 中获取你的APP_ID 
-APP_TOKEN = ' your app token' # 请在 蓝鲸开发者中心 -》点击应用ID -》基本信息 -》注册信息 中获取你的APP_TOKEN
+APP_ID = 'shsnc-test' # 请在 蓝鲸开发者中心 -》点击应用ID -》基本信息 -》注册信息 中获取你的APP_ID 
+APP_TOKEN = '47666134-a1c6-4ec9-916b-841c708c2050' # 请在 蓝鲸开发者中心 -》点击应用ID -》基本信息 -》注册信息 中获取你的APP_TOKEN
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/

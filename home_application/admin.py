@@ -7,13 +7,15 @@ You may obtain a copy of the License at http://opensource.org/licenses/MIT
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
 an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
-
-uwsgi config
 """
-import os
 
-from django.core.wsgi import get_wsgi_application
+# import from apps here
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
 
-application = get_wsgi_application()
+# import from lib
+# ===============================================================================
+# from django.contrib import admin
+# from apps.__.models import aaaa
+#
+# admin.site.register(aaaa)
+# ===============================================================================

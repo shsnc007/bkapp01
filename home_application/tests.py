@@ -8,12 +8,23 @@ Unless required by applicable law or agreed to in writing, software distributed 
 an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
 
-uwsgi config
+
+This file demonstrates writing tests using the unittest module. These will pass
+when you run "manage.py test".
+
+Replace this with more appropriate tests for your application.
 """
-import os
 
-from django.core.wsgi import get_wsgi_application
+# import from apps here
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
 
-application = get_wsgi_application()
+# import from lib
+from django.test import TestCase
+
+
+class SimpleTest(TestCase):
+    def test_basic_addition(self):
+        """
+        Tests that 1 + 1 always equals 2.
+        """
+        self.assertEqual(1 + 1, 2)

@@ -8,12 +8,20 @@ Unless required by applicable law or agreed to in writing, software distributed 
 an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
 
-uwsgi config
+用于正式环境的全局配置
 """
-import os
+from settings import APP_ID
 
-from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
-
-application = get_wsgi_application()
+# ===============================================================================
+# 数据库设置, 正式环境数据库设置
+# ===============================================================================
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # 默认用mysql
+        'NAME': 'root',                            # 你的数据库user
+        'PASSWORD': '123456',                        # 你的数据库password
+        'HOST': '192.168.50.49',                   		   # 数据库HOST
+        'PORT': '3306',                        # 默认3306
+    },
+}

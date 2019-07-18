@@ -8,12 +8,20 @@ Unless required by applicable law or agreed to in writing, software distributed 
 an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
 
-uwsgi config
+自定义认证类.
 """
-import os
 
-from django.core.wsgi import get_wsgi_application
+from django.contrib.auth.backends import ModelBackend
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
+from account.accounts import Account
 
-application = get_wsgi_application()
+
+class BkBackend(ModelBackend):
+    """自定义认证方法."""
+
+    def authenticate(self, request):
+        account = Account()
+        login_status, user = account.is_bk_token_valid(request)
+        if not login_status:
+            return None
+        return user

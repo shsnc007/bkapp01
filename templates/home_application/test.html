@@ -32,5 +32,12 @@
         </div>
     </div>
   </body>
+   <script>
+        function getCMDB() {
+            const myRequest = new XMLHttpRequest();
+            myRequest.open('192.168.50.221:8080/cmdb-server/ci/ci/getCiTreeWithCounts');
+            myRequest.send();
+        }
+    </script>
   
 </html>

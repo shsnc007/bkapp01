@@ -51,8 +51,17 @@ function getData(index,dataKey) {
     params.bk_username = bk_username;
     $.postJSON(url, params,function(data){
         if (data&&data.msgCode===200) {
-            console.log(data.data.pageBean.recordList);
-            getTableCell(formatData(data.data.pageBean.recordList))
+            switch (index) {
+                case 0:
+                    getTableCell(formatData(data.data.pageBean.recordList))
+                    break;
+                case 4:
+                    getAlarmTable(data.data.records)
+                    break;
+                default:
+                    break;
+            }
+           
             window.shsncys[dataKey] = data.data;
         }
         console.log("Data Loaded: " + data);
@@ -87,6 +96,28 @@ function getTableCell(rows) {
         </tr>`
     })
     document.getElementById('cmdb-table').innerHTML=cHtml;
+    return cHtml;
+}
+
+function getAlarmTable(rows) {
+    let cHtml = '';
+    rows.map((item,index) => {
+        cHtml+= ` <tr>
+            <th scope="col">${item.value===0?'已恢复':'未恢复'}</th>
+            <th scope="col">${item.instanceIp}</th>
+            <th scope="col">${item.priorityList}</th>
+            <th scope="col">${item.description}</th>
+            <th scope="col">${item.lastClock}</th>
+            <th scope="col">${item.businessNames}</th>
+            <th scope="col">${item.duration}</th>
+            <th scope="col">${item.sendStatus}</th>
+            <th scope="col">${item.alarmId}</th>
+            <th scope="col">${item.lastHandleContent}</th>
+            <th scope="col">${item.resourceGroupList}</th>
+            <th scope="col">${item.alarmsTriggerValueModelList}</th>
+        </tr>`
+    })
+    document.getElementById('alarm-table').innerHTML=cHtml;
     return cHtml;
 }
 

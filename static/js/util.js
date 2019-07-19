@@ -32,6 +32,16 @@ const paramsUnit = [
     {params:{"condition":{"stepId":3613,"resultStatus":"","instanceName":""},"pagination":{"pagenum":1,"pagesize":5}}}
 ]   
 const bk_app_secret ="47666134-a1c6-4ec9-916b-841c708c2050",bk_app_code="shsnc-test",bk_username='admin';
+$.postJSON = function(url, data, callback) {
+    return jQuery.ajax({
+        'type': 'POST',
+        'url': url,
+        'contentType': 'application/json',
+        'data': $.toJSON(data),
+        'dataType': 'json',
+        'success': callback
+    });
+};
 
 function getData(index,dataKey) {
     let url =urlUnit[index],params =paramsUnit[index];
@@ -46,3 +56,4 @@ function getData(index,dataKey) {
         console.log("Data Loaded: " + data);
     });
 }
+

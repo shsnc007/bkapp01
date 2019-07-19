@@ -1,3 +1,6 @@
+#app {
+    height: 90%;
+}
 .left-panel {
     height: inherit;
     float: left;
@@ -6,5 +9,4 @@
 .right-panel {
     height: inherit;
     margin-left: 300px;
-    background-color:green;
 }

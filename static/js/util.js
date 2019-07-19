@@ -38,7 +38,7 @@ function getData(index,dataKey) {
     params.bk_app_secret = bk_app_secret;
     params.bk_app_code = bk_app_code;
     params.bk_username = bk_username;
-    $.post(url, params,function(data){
+    $.postJSON(url, params,function(data){
         if (data&&data.msgCode===200) {
             console.log(data.data);
             window.shsncys[dataKey] = data.data;

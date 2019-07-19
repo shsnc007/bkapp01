@@ -33,7 +33,7 @@ from django.conf.global_settings import *  # noqa
 APP_ID = 'shsnc-test'
 APP_TOKEN = '47666134-a1c6-4ec9-916b-841c708c2050'
 # 蓝鲸智云开发者中心的域名，形如：http://paas.bking.com
-BK_PAAS_HOST = 'http://paas.bk.com:80'
+BK_PAAS_HOST = 'http://192.168.50.221:8080'
 
 # 请求官方 API 默认版本号，可选值为："v2" 或 ""；其中，"v2"表示规范化API，""表示未规范化API
 DEFAULT_BK_API_VER = 'v2'

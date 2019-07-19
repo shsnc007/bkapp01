@@ -1,79 +1,100 @@
-<%inherit file="/base.html"/>
+<!DOCTYPE html>
+<html>
 
-<%block name="content">
-<div class="page_index">
-	<!-- banner start -->
-	<div class="getheadimg-box">
-		<p class="guide-banner-title">开发指引</p>
-		<p class="guide-banner-word">了解蓝鲸开发框架，从这里开始</p>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>演示</title>
+    <link href="${STATIC_URL}assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${STATIC_URL}assets/bootstrap-3.3.4/css/bootstrap_noresponsive.css" rel="stylesheet">
+    <link href="${STATIC_URL}css/common.css?v=${STATIC_VERSION}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${STATIC_URL}css/index.css?v=${STATIC_VERSION}">
+    <script type="text/javascript">
+        var app_id = "${APP_ID}";
+        var site_url = "${SITE_URL}"; // app的url前缀,在ajax调用的时候，应该加上该前缀
+        var static_url = "${STATIC_URL}"; // 静态资源前缀
+    </script>
+</head>
 
-	</div>
-	<!-- banner end -->
-	<div class="container">
-	<ul class="king-step3 king-step-primary">
-	    <li class="process-doing mt50 clearfix">
-	    	<span class="outer-circle"></span>
-	        <div class="step-num step-num-top-line">1</div>
-	        <div class="step-text step-text-top">
-	            <h4>本地开发环境安装</h4>
-		        <div class="mt10 mb20 wm lh2">
-					1.本地环境搭建镜像
-					<a href="http://bkopen-10032816.file.myqcloud.com/paas/bk-django1.8-u2.box" target="_blank">点击下载</a>
-					<br>
-					2.使用文档
-					<a href="http://bkopen-10032816.file.myqcloud.com/paas/蓝鲸智云统一开发环境搭建指南.docx" target="_blank">点击下载</a>
-					<br>
-					<p class="text-notice">注意：应用测试、正式部署时会自动安装运行环境，并部署应用
-					</p>
-				</div>
-	        </div>
-	    </li>
-	    <li class="process-doing clearfix">
-	    	<span class="outer-circle"></span>
-	        <div class="step-num">2</div>
-	        <div class="step-text">
-	            <h4>开发项目</h4>
-	            <div class="mt10 mb20 wm lh2">
-					<strong>1.配置修改</strong><br>
-					（1）conf/default.py 文件：APP_ID \ APP_TOKEN （蓝鲸智云开发者中心 -&gt; 点击应用ID -&gt; 基本信息 中可以查看到这两个值的信息）<br>
-					（2）conf/default.py 文件：BK_PAAS_HOST（蓝鲸智云开发者中心的域名，形如：http://paas.bking.com）<br>
-					（3）conf/settings_development.py 文件：DATABASES（请创建本地开发数据库，并修改配置信息）<br>
-					（4）conf/settings_testing.py 文件：DATABASES（请创建测试数据库，并修改配置信息）<br>
-					（5）conf/settings_production.py 文件：DATABASES（请创建正式数据库，并修改配置信息）<br>
-					<p class="text-notice">注意：测试环境 和 正式环境 的数据库需要对 AppServer 授权</p>
-					<br>
-					<strong>2.celery 配置</strong><br>
-					若需要使用 celery，请修改以下配置：（<a href="http://bkopen-10032816.file.myqcloud.com/paas/celery_packages.zip">点击下载 celery 开发指引</a>）<br>
-					（1）conf/default.py 文件：IS_USE_CELERY 的值设置为: <span class="text-notice">True</span><br>
-					（2）conf/default.py 文件：BROKER_URL_DEV（请创建本地开发的 celery消息队列，并修改配置信息，推荐使用 RabbitMQ）<br>
-					（3）conf/default.py 文件：CELERY_IMPORTS（添加celery任务模块）<br>
-					<strong>3.数据库操作</strong><br>
-					Django1.8 Migration的使用方法如下:<br>
-					（1）执行 manage.py migrate（Django默认表创建）。<br>
-					（2）执行 manage.py startapp yourappname、添加yourappname到conf/default.py文件的"INSTALLED_APPS_CUSTOM"变量中。<br>
-					（3）在Application的models.py中建立数据库模型，执行manage.py makemigrations yourappname。<br>
-					（4）执行manage.py migrate yourappname。<br>
-				</div>
-	        </div>
-	    </li>
-	    <li class="process-doing clearfix">
-	    <span class="outer-circle"></span>
-	        <div class="step-num">3</div>
-	        <div class="step-text-button-line">
-	            <h4>部署项目</h4>
-	            <div class="mt10 mb20 wm lh2">
-					<strong>通过蓝鲸智云开发者中心提供的“测试部署”、“正式部署”服务将应用部署到测试\正式环境中。</strong><br>
-					操作入口：蓝鲸智云开发者中心 -&gt; 点击应用名称 -&gt; 应用部署。 <br>
-					（1）测试部署：将应用代码在测试环境上进行部署，部署成功后就可以在测试环境中使用您的应用。<br>
-					（2）正式部署：将应用代码在正式环境上进行部署，部署成功后就可以在正式环境中使用您的应用。<br>
-					（3）下架操作：系统将应用代码从您选择的环境上撤销部署，届时用户将无法访问该应用，但是该应用的数据库依然保留。<br>
-				</div>
-	        </div>
-	    </li>
-	</ul>
-	</div>
-</div>
-</%block>
-<%block name='footerline'>
-    <hr class="guide-cutting-line">
-</%block>
+<body>
+    <nav class="navbar navbar-default king-horizontal-nav2 navbar-mt0" role="navigation">
+        <div class="container" style="width: 100%;">
+            <div class="navbar-header col-md-4 col-sm-4 col-xs-4 logo">
+                <a class="navbar-brand" href="${SITE_URL}">
+                    智慧运维平台
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <%
+                        home = dev_guide = contactus = ''
+                        relative_path = APP_PATH
+                        if relative_path == SITE_URL or relative_path.startswith(SITE_URL + "?"):
+                            home = 'king-navbar-active'
+                        elif relative_path.startswith(SITE_URL + "dev-guide/"):
+                            dev_guide = 'king-navbar-active'
+                        elif relative_path.startswith(SITE_URL + "contactus/"):
+                            contactus = 'king-navbar-active'
+                        %>
+                    <li class="${home}"><a href="${SITE_URL}"><span>首页</span></a></li>
+                    <li class="${dev_guide}"><a href="${SITE_URL}dev-guide/"><span>开发指引</span></a></li>
+                    <li class="${contactus}"><a href="${SITE_URL}contactus/"><span>联系我们</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="left-panel">
+            <button onclick="getCMDB()" type="button" class="btn btn-info">获取CMDB资产数据</button>
+        </div>
+        <div class="right-panel">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <div class="left-panel">
+            <button onclick="getCMDB()" type="button" class="btn btn-info">更新CMDB资产数据</button>
+        </div>
+        <div class="right-panel">
+            
+        </div>
+    </div>
+</body>
+<script src="${STATIC_URL}js/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="${STATIC_URL}js/jquery.json-2.3.min.js" type="text/javascript"></script>
+<script src="${STATIC_URL}assets/bootstrap-3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${STATIC_URL}js/settings.js?v=${STATIC_VERSION}" type="text/javascript"></script>
+<script src="${STATIC_URL}js/util.js?v=${STATIC_VERSION}" type="text/javascript"></script>
+<!--[if lt IE 6]>\xe8\x93\x9d\xe9\xb2\xb8\xe6\x99\xba\xe8\x90\xa5\x20\xe7\x89\x88\xe6\x9d\x83\xe6\x89\x80\xe6\x9c\x89<![endif]-->
+
+</html>

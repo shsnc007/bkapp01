@@ -2,7 +2,7 @@ window.testString = 'ceshi';
 window.shsncys={};
 const urlUnit = [
     //获取CMDB主机列表
-    '/api/c/self-service-api/snc/cmdb/getDatainstancelist',
+    '/api/c/self-service-api/snc/cmdb/getcmdbinstancelist/',
     //获取CMDB某个主机的信息
     'api/c/self-service-api/snc/cmdb/getInstanceByInstanceId/',
     // 编辑CMDB主机

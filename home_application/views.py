@@ -16,7 +16,7 @@ def home(request):
     """
     首页
     """
-    return render_mako_context(request, '/home_application/test.html')
+    return render_mako_context(request, '/home_application/home.html')
 
 
 def dev_guide(request):

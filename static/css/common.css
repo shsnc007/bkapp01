@@ -1,0 +1,10 @@
+.left-panel {
+    height: inherit;
+    float: left;
+    width: 300px;
+}
+.right-panel {
+    height: inherit;
+    margin-left: 300px;
+    background-color:green;
+}

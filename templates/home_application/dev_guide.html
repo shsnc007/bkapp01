@@ -1,49 +1,6 @@
-<!DOCTYPE html>
-<html>
+<%inherit file="/base.html"/>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>演示</title>
-    <link href="${STATIC_URL}assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${STATIC_URL}assets/bootstrap-3.3.4/css/bootstrap_noresponsive.css" rel="stylesheet">
-    <link href="${STATIC_URL}css/common.css?v=${STATIC_VERSION}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${STATIC_URL}css/index.css?v=${STATIC_VERSION}">
-    <script type="text/javascript">
-        var app_id = "${APP_ID}";
-        var site_url = "${SITE_URL}"; // app的url前缀,在ajax调用的时候，应该加上该前缀
-        var static_url = "${STATIC_URL}"; // 静态资源前缀
-    </script>
-</head>
-
-<body>
-    <nav class="navbar navbar-default king-horizontal-nav2 navbar-mt0" role="navigation">
-        <div class="container" style="width: 100%;">
-            <div class="navbar-header col-md-4 col-sm-4 col-xs-4 logo">
-                <a class="navbar-brand" href="${SITE_URL}">
-                    智慧运维平台
-                </a>
-            </div>
-            <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav">
-                    <%
-                        home = dev_guide = contactus = ''
-                        relative_path = APP_PATH
-                        if relative_path == SITE_URL or relative_path.startswith(SITE_URL + "?"):
-                            home = 'king-navbar-active'
-                        elif relative_path.startswith(SITE_URL + "dev-guide/"):
-                            dev_guide = 'king-navbar-active'
-                        elif relative_path.startswith(SITE_URL + "contactus/"):
-                            contactus = 'king-navbar-active'
-                        %>
-                    <li class="${home}"><a href="${SITE_URL}"><span>首页</span></a></li>
-                    <li class="${dev_guide}"><a href="${SITE_URL}dev-guide/"><span>开发指引</span></a></li>
-                    <li class="${contactus}"><a href="${SITE_URL}contactus/"><span>联系我们</span></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<%block name="content">
     <div>
         <div class="left-panel">
             <button onclick="getCMDB()" type="button" class="btn btn-info">获取CMDB资产数据</button>
@@ -89,12 +46,4 @@
             
         </div>
     </div>
-</body>
-<script src="${STATIC_URL}js/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="${STATIC_URL}js/jquery.json-2.3.min.js" type="text/javascript"></script>
-<script src="${STATIC_URL}assets/bootstrap-3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${STATIC_URL}js/settings.js?v=${STATIC_VERSION}" type="text/javascript"></script>
-<script src="${STATIC_URL}js/util.js?v=${STATIC_VERSION}" type="text/javascript"></script>
-<!--[if lt IE 6]>\xe8\x93\x9d\xe9\xb2\xb8\xe6\x99\xba\xe8\x90\xa5\x20\xe7\x89\x88\xe6\x9d\x83\xe6\x89\x80\xe6\x9c\x89<![endif]-->
-
-</html>
+</%block>

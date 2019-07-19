@@ -1,7 +1,7 @@
 window.testString = 'ceshi';
 const urlUnit = [
     //获取CMDB主机列表
-    '/api/c/self-service-api/snc/cmdb/getDatainstancelist',
+    '80/api/c/self-service-api/snc/cmdb/getDatainstancelist',
     //获取CMDB某个主机的信息
     'api/c/self-service-api/snc/cmdb/getInstanceByInstanceId/',
     // 编辑CMDB主机

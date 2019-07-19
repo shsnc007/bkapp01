@@ -55,7 +55,7 @@ function getData(index,dataKey) {
                 case 0:
                     getTableCell(formatData(data.data.pageBean.recordList))
                     break;
-                case 4:
+                case 3:
                     getAlarmTable(data.data.records)
                     break;
                 default:

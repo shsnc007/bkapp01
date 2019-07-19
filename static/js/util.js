@@ -1,4 +1,5 @@
 window.testString = 'ceshi';
+window.shsncys={};
 const urlUnit = [
     //获取CMDB主机列表
     '/api/c/self-service-api/snc/cmdb/getDatainstancelist',
@@ -50,10 +51,42 @@ function getData(index,dataKey) {
     params.bk_username = bk_username;
     $.postJSON(url, params,function(data){
         if (data&&data.msgCode===200) {
-            console.log(data.data);
+            console.log(data.data.pageBean.recordList);
+            getTableCell(formatData(data.data.pageBean.recordList))
             window.shsncys[dataKey] = data.data;
         }
         console.log("Data Loaded: " + data);
     });
+}
+function formatData(data) {
+    let rows = [];
+    data.map((item)=>{
+        let columns = {};
+        item.columns.map((items,index) => {
+            columns[items.code] = items.value;
+        })
+        rows.push(columns);
+    })
+    return rows;
+}
+
+function getTableCell(rows) {
+    let cHtml = '';
+    rows.map((item,index) => {
+        cHtml+= ` <tr>
+            <th scope="col">${item.instance_name}</th>
+            <th scope="col">${item.solute_status}</th>
+            <th scope="col">${item.host_name}</th>
+            <th scope="col">${item.ip}</th>
+            <th scope="col">${item.vip}</th>
+            <th scope="col">${item.manage_ip}</th>
+            <th scope="col">${item.server_type}</th>
+            <th scope="col">${item.os_version}</th>
+            <th scope="col">${item.use_state}</th>
+            <th scope="col">${item['82_14_serial_number']}</th>
+        </tr>`
+    })
+    document.getElementById('cmdb-table').innerHTML=cHtml;
+    return cHtml;
 }
 

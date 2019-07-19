@@ -553,20 +553,38 @@ const data = [
         ]
     }
 ];
-let row = [];
-data.map((item)=>{
-    let columns = {};
-    item.columns.map((items,index) => {
-        columns[items.code] = items.value;
-    })
-    row.push(columns);
-})
-console.log(row);
 
-function formatData(row) {
-    
-    row.map((item,index) => {
-        
+function formatData(data) {
+    let rows = [];
+    data.map((item)=>{
+        let columns = {};
+        item.columns.map((items,index) => {
+            columns[items.code] = items.value;
+        })
+        rows.push(columns);
     })
+    return rows;
 }
-formatData();
+
+// console.log(rows);
+
+function getTableCell() {
+    let innerHtml = '';
+    rows.map((item,index) => {
+        innerHtml+= ` <tr>
+            <th scope="col">${item.instance_name}</th>
+            <th scope="col">${item.solute_status}</th>
+            <th scope="col">${item.host_name}</th>
+            <th scope="col">${item.ip}</th>
+            <th scope="col">${item.vip}</th>
+            <th scope="col">${item.manage_ip}</th>
+            <th scope="col">${item.server_type}</th>
+            <th scope="col">${item.os_version}</th>
+            <th scope="col">${item.use_state}</th>
+            <th scope="col">${item['82_14_serial_number']}</th>
+        </tr>`
+    })
+    
+    return innerHtml;
+}
+console.log(formatData());

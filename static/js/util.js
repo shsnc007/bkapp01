@@ -103,6 +103,7 @@ function getAlarmTable(rows) {
     let cHtml = '';
     
     rows.map((item,index) => {
+        
         cHtml+= ` <tr>
             <th scope="col">${item.value===0?'已恢复':'未恢复'}</th>
             <th scope="col">${item.instanceIp}</th>

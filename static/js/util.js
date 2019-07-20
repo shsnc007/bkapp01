@@ -101,6 +101,7 @@ function getTableCell(rows) {
 
 function getAlarmTable(rows) {
     let cHtml = '';
+    
     rows.map((item,index) => {
         cHtml+= ` <tr>
             <th scope="col">${item.value===0?'已恢复':'未恢复'}</th>
@@ -114,7 +115,6 @@ function getAlarmTable(rows) {
             <th scope="col">${item.alarmId}</th>
             <th scope="col">${item.lastHandleContent}</th>
             <th scope="col">${item.resourceGroupList}</th>
-            <th scope="col">${item.alarmsTriggerValueModelList}</th>
         </tr>`
     })
     document.getElementById('alarm-table').innerHTML=cHtml;

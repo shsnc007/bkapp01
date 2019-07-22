@@ -212,7 +212,7 @@ function getAllUser() {
     let username = encodeURIComponent(bk_username);
     let url = `/api/c/compapi/v2/bk_login/get_all_users/?&bk_app_code=${app_code}&bk_app_secret=${app_secret}&bk_username=${username}`;
     $.get(url,(data) => {
-        if(data.message==='OK') {
+        if(data.data) {
             getAllTable(data.data);
         }
     });

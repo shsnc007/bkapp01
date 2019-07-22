@@ -58,13 +58,15 @@ function getData(index,dataKey) {
                 case 3:
                     getAlarmTable(data.data.records)
                     break;
+                case 4:
+                    getAlarmMonitorTable(data.data.records);
+                    break;
                 default:
                     break;
             }
            
             window.shsncys[dataKey] = data.data;
         }
-        console.log("Data Loaded: " + data);
     });
 }
 function formatData(data) {
@@ -79,6 +81,7 @@ function formatData(data) {
     return rows;
 }
 
+// 获取CMDB列表
 function getTableCell(rows) {
     let cHtml = '';
     rows.map((item,index) => {
@@ -98,7 +101,7 @@ function getTableCell(rows) {
     document.getElementById('cmdb-table').innerHTML=cHtml;
     return cHtml;
 }
-
+// 获取告警列表
 function getAlarmTable(rows) {
     let cHtml = '';
     
@@ -121,16 +124,34 @@ function getAlarmTable(rows) {
     document.getElementById('alarm-table').innerHTML=cHtml;
     return cHtml;
 }
-
+// 获取告警性能列表
+function getAlarmMonitorTable(rows) {
+    let cHtml = '';
+    
+    rows.map((item,index) => {
+        
+        cHtml+= ` <tr>
+            <th scope="col">${item.itemname}</th>
+            <th scope="col">${item.applicationname}</th>
+            <th scope="col">${item.value}</th>
+            <th scope="col">${item.delay}</th>
+        </tr>`
+    })
+    document.getElementById('alarm-monitor-table').innerHTML=cHtml;
+    return cHtml;
+}
+// 更新CMDE主机
 function updateHost(index) {
     let url =urlUnit[index],params =paramsUnit[index];
     let hostName = document.getElementById('hostName').value;
     let osName = document.getElementById('os-select').value;
+    console.log(hostName,osName);
     if (!hostName||!osName) {
         alert('主机名或操作系统未填写');
+        return ;
     }
-    params.instanceRecord.attributes[0].attributeValue = hostName;
-    params.instanceRecord.attributes[5].attributeValue = osName;
+    params.params.instanceRecord.attributes[0].attributeValue = hostName;
+    params.params.instanceRecord.attributes[5].attributeValue = osName;
     $.postJSON(url, params,function(data){
         if (data&&data.msgCode===200) {
             alert('更新成功');

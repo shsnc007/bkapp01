@@ -32,7 +32,18 @@
             <button onclick="getData(4,'performance')" type="button" class="btn btn-info">监控性能</button>
         </div>
         <div class="right-panel">
-            
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">监控项</th>
+                            <th scope="col">最新数据</th>
+                            <th scope="col">最后检查时间/th>
+                            <th scope="col">采集频率</th>
+                        </tr>
+                    </thead>
+                    <tbody id='alarm-monitor-table'>
+                    </tbody>
+                </table>
         </div>
     </div>
 </%block>

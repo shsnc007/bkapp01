@@ -129,7 +129,7 @@ function getAlarmTable(rows) {
             <th scope="col">${item.instanceIp}</th>
             <th scope="col">${item.priorityList}</th>
             <th scope="col">${item.description}</th>
-            <th scope="col">${toDate(item.lastClock)}</th>
+            <th scope="col">${item.lastClock}</th>
             <th scope="col">${item.businessNames}</th>
             <th scope="col">${item.duration}</th>
             <th scope="col">${item.sendStatus}</th>

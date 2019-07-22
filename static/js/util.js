@@ -145,7 +145,9 @@ function updateHost(index) {
     let url =urlUnit[index],params =paramsUnit[index];
     let hostName = document.getElementById('hostName').value;
     let osName = document.getElementById('os-select').value;
-    console.log(hostName,osName);
+    params.bk_app_secret = bk_app_secret;
+    params.bk_app_code = bk_app_code;
+    params.bk_username = bk_username;
     if (!hostName||!osName) {
         alert('主机名或操作系统未填写');
         return ;

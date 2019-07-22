@@ -217,19 +217,20 @@ function getAllUser() {
         }
     });
 }
-function getAllTable(item) {
+function getAllTable(data) {
     let cHtml = '';
-    cHtml+= ` <tr>
-        <th scope="col">${item.bk_username}</th>
-        <th scope="col">${item.qq}</th>
-        <th scope="col">${item.language}</th>
-        <th scope="col">${item.phone}</th>
-        <th scope="col">${item.email}</th>
-        <th scope="col">${item.wx_userid}</th>
-        <th scope="col">${item.chname}</th>
-        <th scope="col">${item.time_zone}</th>
-    </tr>`;
-
-document.getElementById('user-list-detail').innerHTML=cHtml;
+    data.map((item,index) => {
+        cHtml+= ` <tr>
+            <th scope="col">${item.bk_username}</th>
+            <th scope="col">${item.qq}</th>
+            <th scope="col">${item.language}</th>
+            <th scope="col">${item.phone}</th>
+            <th scope="col">${item.email}</th>
+            <th scope="col">${item.wx_userid}</th>
+            <th scope="col">${item.chname}</th>
+            <th scope="col">${item.time_zone}</th>
+        </tr>`;
+    });
+    document.getElementById('user-list-detail').innerHTML=cHtml;
 }
 

@@ -83,6 +83,14 @@ function formatData(data) {
     })
     return rows;
 }
+function toDate(times) {
+    let year = new Date(times).getFullYear(),
+    month = new Date(times).getMonth()+1,
+    day = new Date(times).getDate(),
+    hours = new Date(times).getHours(),
+    minutes = new Date(times).getMinutes();
+    return `${year}-${month}-${day}-${hours}-${minutes}`;
+}
 
 // 获取CMDB列表
 function getTableCell(rows) {
@@ -115,18 +123,19 @@ function getAlarmTable(rows) {
             <th scope="col">${item.instanceIp}</th>
             <th scope="col">${item.priorityList}</th>
             <th scope="col">${item.description}</th>
-            <th scope="col">${item.lastClock}</th>
+            <th scope="col">${toDate(item.lastClock)}</th>
             <th scope="col">${item.businessNames}</th>
             <th scope="col">${item.duration}</th>
             <th scope="col">${item.sendStatus}</th>
             <th scope="col">${item.alarmId}</th>
             <th scope="col">${item.lastHandleContent}</th>
-            <th scope="col">${item.resourceGroupList}</th>
+            <th scope="col">''</th>
         </tr>`
     })
     document.getElementById('alarm-table').innerHTML=cHtml;
     return cHtml;
 }
+
 // 获取告警性能列表
 function getAlarmMonitorTable(rows) {
     let cHtml = '';
@@ -151,8 +160,8 @@ function getBaseLogTable(item) {
             <th scope="col">${item.taskDesc}</th>
             <th scope="col">${item.setupUser}</th>
             <th scope="col">${item.execType==1?'手动':'自动'}</th>
-            <th scope="col">${item.createTime}</th>
-            <th scope="col">${item.endExecTime}</th>
+            <th scope="col">${toDate(item.createTime)}</th>
+            <th scope="col">${toDate(item.endExecTime)}</th>
         </tr>`;
 
     document.getElementById('excute-log').innerHTML=cHtml;
@@ -180,7 +189,7 @@ function getBaseLog(index) {
 function updateHost(index) {
     let url =urlUnit[index],params =paramsUnit[index];
     let hostName = document.getElementById('hostName').value;
-    let osName = document.getElementById('os-select').value;
+    let osName = $("#os-select").val();
     params.bk_app_secret = bk_app_secret;
     params.bk_app_code = bk_app_code;
     params.bk_username = bk_username;

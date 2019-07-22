@@ -206,3 +206,29 @@ function updateHost(index) {
     })
 }
 
+function getAllUser() {
+    let bk_app_code = encodeURIComponent(bk_app_code);
+    let bk_app_secret = encodeURIComponent(bk_app_secret);
+    let url = `/api/c/compapi/v2/bk_login/get_all_users/?&bk_app_code=${bk_app_code}&bk_app_secret=${bk_app_secret}`;
+    $.get(url,(data) => {
+        if(data.message==='OK') {
+            getAllTable(data.data);
+        }
+    });
+}
+function getAllTable(item) {
+    let cHtml = '';
+    cHtml+= ` <tr>
+        <th scope="col">${item.bk_username}</th>
+        <th scope="col">${item.qq}</th>
+        <th scope="col">${item.language}</th>
+        <th scope="col">${item.phone}</th>
+        <th scope="col">${item.email}</th>
+        <th scope="col">${item.wx_userid}</th>
+        <th scope="col">${item.chname}</th>
+        <th scope="col">${item.time_zone}</th>
+    </tr>`;
+
+document.getElementById('user-list-detail').innerHTML=cHtml;
+}
+

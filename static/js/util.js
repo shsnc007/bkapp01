@@ -34,6 +34,9 @@ const paramsUnit = [
 ]   
 const bk_app_secret ="47666134-a1c6-4ec9-916b-841c708c2050",bk_app_code="shsnc-test",bk_username='admin';
 $.postJSON = function(url, data, callback) {
+    data.bk_app_secret = bk_app_secret;
+    data.bk_app_code = bk_app_code;
+    data.bk_username = bk_username;
     return jQuery.ajax({
         'type': 'POST',
         'url': url,
@@ -43,17 +46,29 @@ $.postJSON = function(url, data, callback) {
         'success': callback
     });
 };
+function toDate(times) {
+    let year = new Date(times).getFullYear(),
+    month = new Date(times).getMonth()+1,
+    day = new Date(times).getDate(),
+    hours = new Date(times).getHours(),
+    minutes = new Date(times).getMinutes();
+    return `${year}-${month}-${day}-${hours}-${minutes}`;
+}
+
+function drawDom(domP,domC) {
+    document.getElementById(domP).innerHTML=domC;
+}
 
 function getData(index,dataKey) {
     let url =urlUnit[index],params =paramsUnit[index];
-    params.bk_app_secret = bk_app_secret;
-    params.bk_app_code = bk_app_code;
-    params.bk_username = bk_username;
     $.postJSON(url, params,function(data){
         if (data&&data.msgCode===200) {
             switch (index) {
                 case 0:
                     getTableCell(formatData(data.data.pageBean.recordList))
+                    break;
+                case 2:
+                    updateHost()
                     break;
                 case 3:
                     getAlarmTable(data.data.records)
@@ -83,14 +98,6 @@ function formatData(data) {
     })
     return rows;
 }
-function toDate(times) {
-    let year = new Date(times).getFullYear(),
-    month = new Date(times).getMonth()+1,
-    day = new Date(times).getDate(),
-    hours = new Date(times).getHours(),
-    minutes = new Date(times).getMinutes();
-    return `${year}-${month}-${day}-${hours}-${minutes}`;
-}
 
 // 获取CMDB列表
 function getTableCell(rows) {
@@ -109,8 +116,7 @@ function getTableCell(rows) {
             <th scope="col">${item['82_14_serial_number']}</th>
         </tr>`
     })
-    document.getElementById('cmdb-table').innerHTML=cHtml;
-    return cHtml;
+    drawDom('cmdb-table',cHtml);
 }
 // 获取告警列表
 function getAlarmTable(rows) {
@@ -132,8 +138,7 @@ function getAlarmTable(rows) {
             <th scope="col">''</th>
         </tr>`
     })
-    document.getElementById('alarm-table').innerHTML=cHtml;
-    return cHtml;
+    drawDom('alarm-table',cHtml);
 }
 
 // 获取告警性能列表
@@ -149,8 +154,7 @@ function getAlarmMonitorTable(rows) {
             <th scope="col">${item.delay}</th>
         </tr>`
     })
-    document.getElementById('alarm-monitor-table').innerHTML=cHtml;
-    return cHtml;
+    drawDom('alarm-monitor-table',cHtml);
 }
 function getBaseLogTable(item) {
     let cHtml = '';
@@ -164,14 +168,11 @@ function getBaseLogTable(item) {
             <th scope="col">${toDate(item.endExecTime)}</th>
         </tr>`;
 
-    document.getElementById('excute-log').innerHTML=cHtml;
+    drawDom('excute-log',cHtml);
     getBaseLog(6);
 }
 function getBaseLog(index) {
     let url =urlUnit[index],params =paramsUnit[index];
-    params.bk_app_secret = bk_app_secret;
-    params.bk_app_code = bk_app_code;
-    params.bk_username = bk_username;
     $.postJSON(url, params,function(data){
         let cHtml= '';
         if (data&&data.msgCode===200) {
@@ -181,7 +182,7 @@ function getBaseLog(index) {
             if (!cHtml) {
                 cHtml = '暂无日志';
             }
-            document.getElementById('log-detail').innerHTML=cHtml;
+            drawDom('log-detail',cHtml);
         }
     })
 }
@@ -190,9 +191,6 @@ function updateHost(index) {
     let url =urlUnit[index],params =paramsUnit[index];
     let hostName = document.getElementById('hostName').value;
     let osName = $("#os-select").val();
-    params.bk_app_secret = bk_app_secret;
-    params.bk_app_code = bk_app_code;
-    params.bk_username = bk_username;
     if (!hostName||!osName) {
         alert('主机名或操作系统未填写');
         return ;
@@ -231,6 +229,6 @@ function getAllTable(data) {
             <th scope="col">${item.time_zone}</th>
         </tr>`;
     });
-    document.getElementById('user-list-detail').innerHTML=cHtml;
+    drawDom('user-list-detail',cHtml);
 }
 

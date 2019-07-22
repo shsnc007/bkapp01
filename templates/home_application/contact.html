@@ -9,41 +9,25 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">任务名称</th>
+                        <th scope="col">所属操作</th>
+                        <th scope="col">执行用户</th>
+                        <th scope="col">执行方式</th>
+                        <th scope="col">开始时间</th>
+                        <th scope="col">结束时间</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                <tbody id="excute-log">
+                    
                 </tbody>
             </table>
         </div>
     </div>
-    <!-- <div>
+    <div>
         <div class="left-panel">
-            <button onclick="getData(6,'detailLog')" type="button" class="btn btn-info"></button>
         </div>
         <div class="right-panel">
-            
+            <div id="log-detail"></div>
         </div>
-    </div> -->
+    </div>
 </%block>

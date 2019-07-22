@@ -61,6 +61,9 @@ function getData(index,dataKey) {
                 case 4:
                     getAlarmMonitorTable(data.data.records);
                     break;
+                case 5:
+                    getBaseLogTable(data.data);
+                    break;
                 default:
                     break;
             }
@@ -139,6 +142,39 @@ function getAlarmMonitorTable(rows) {
     })
     document.getElementById('alarm-monitor-table').innerHTML=cHtml;
     return cHtml;
+}
+function getBaseLogTable(item) {
+    let cHtml = '';
+    
+        cHtml+= ` <tr>
+            <th scope="col">${item.taskName}</th>
+            <th scope="col">${item.taskDesc}</th>
+            <th scope="col">${item.setupUser}</th>
+            <th scope="col">${item.execType==1?'手动':'自动'}</th>
+            <th scope="col">${item.createTime}</th>
+            <th scope="col">${item.endExecTime}</th>
+        </tr>`;
+
+    document.getElementById('excute-log').innerHTML=cHtml;
+    getBaseLog(6);
+}
+function getBaseLog(index) {
+    let url =urlUnit[index],params =paramsUnit[index];
+    params.bk_app_secret = bk_app_secret;
+    params.bk_app_code = bk_app_code;
+    params.bk_username = bk_username;
+    $.postJSON(url, params,function(data){
+        let cHtml= '';
+        if (data&&data.msgCode===200) {
+            data.data.records.map((item,index) => {
+                cHtml+=item.message;
+            })
+            if (!cHtml) {
+                cHtml = '暂无日志';
+            }
+            document.getElementById('log-detail').innerHTML=cHtml;
+        }
+    })
 }
 // 更新CMDE主机
 function updateHost(index) {

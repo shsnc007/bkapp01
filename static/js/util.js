@@ -122,3 +122,19 @@ function getAlarmTable(rows) {
     return cHtml;
 }
 
+function updateHost(index) {
+    let url =urlUnit[index],params =paramsUnit[index];
+    let hostName = document.getElementById('hostName').value;
+    let osName = document.getElementById('os-select').value;
+    if (!hostName||!osName) {
+        alert('主机名或操作系统未填写');
+    }
+    params.instanceRecord.attributes[0].attributeValue = hostName;
+    params.instanceRecord.attributes[5].attributeValue = osName;
+    $.postJSON(url, params,function(data){
+        if (data&&data.msgCode===200) {
+            alert('更新成功');
+        }
+    })
+}
+

@@ -23,37 +23,27 @@
                     </tr>
                 </thead>
                 <tbody id='cmdb-table'>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
     <div>
         <div class="left-panel">
-            <button onclick="getData(1,'updateAsset')" type="button" class="btn btn-info">更新CMDB资产数据</button>
+            <button onclick="updateHost(1,'updateAsset')" type="button" class="btn btn-info">更新CMDB资产数据</button>
         </div>
         <div class="right-panel">
             <div class="row">
+                <div>以下都必填项</div>
                 <div class="col-lg-6">
-                    名称：<input type="text" class="form-control" placeholder="名称" aria-describedby="sizing-addon3">
-                    Tag：<input type="text" class="form-control" placeholder="tag" aria-describedby="sizing-addon3">
+                    主机名<input id='hostName' type="text" class="form-control" placeholder="主机名" aria-describedby="sizing-addon3">
+                    <label for="os-select">操作系统类型：</label>
+                    <select id='os-select' name="select">
+                        <option value="Linux">Linux</option> 
+                        <option value="AIX" >AIX</option>
+                        <option value="selected">Windows</option>
+                        <option value="Solarix">Solarix</option>
+                        <option value="HP-UX">HP-UX</option>
+                      </select>
                 </div>
             </div>
         </div>

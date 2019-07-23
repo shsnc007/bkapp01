@@ -67,9 +67,6 @@ function getData(index,dataKey) {
                 case 0:
                     getTableCell(formatData(data.data.pageBean.recordList))
                     break;
-                case 2:
-                    updateHost()
-                    break;
                 case 3:
                     getAlarmTable(data.data.records)
                     break;

@@ -33,14 +33,14 @@ const paramsUnit = [
     {params:{"condition":{"stepId":3613,"resultStatus":"","instanceName":""},"pagination":{"pagenum":1,"pagesize":5}}}
 ]   
 const bk_app_secret ="47666134-a1c6-4ec9-916b-841c708c2050",
-bk_app_code="shsnc-test",bk_username='admin',bk_url='http://192.168.50.221:8080',
+bk_app_code="shsnc-test",bk_username='admin',amp_url='http://192.168.50.221:8080',
 amp_user="yanshi1",amp_passwd="yanshi1",
 snc_url = 'http://paas.bk.com:80/api/c/compapi/shsnc/snc_sync_api/'
 $.postJSON = function( data, callback) {
     data.bk_app_secret = bk_app_secret;
     data.bk_app_code = bk_app_code;
     data.bk_username = bk_username;
-    data.bk_url = bk_url;
+    data.amp_url = amp_url;
     data.amp_user = amp_user;
     data.amp_passwd = amp_passwd;
     return jQuery.ajax({

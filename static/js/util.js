@@ -32,7 +32,8 @@ const paramsUnit = [
     //执行操作日志信息
     {params:{"condition":{"stepId":3613,"resultStatus":"","instanceName":""},"pagination":{"pagenum":1,"pagesize":5}}}
 ]   
-const bk_app_secret ="47666134-a1c6-4ec9-916b-841c708c2050",bk_app_code="shsnc-test",bk_username='admin',bk_url='http://192.168.50.221:8080',
+const bk_app_secret ="47666134-a1c6-4ec9-916b-841c708c2050",
+bk_app_code="shsnc-test",bk_username='admin',bk_url='http://192.168.50.221:8080',
 amp_user="yanshi1",amp_passwd="yanshi1";
 $.postJSON = function(url, data, callback) {
     data.bk_app_secret = bk_app_secret;
@@ -98,7 +99,7 @@ function getAmpApi(index) {
         case 0:
             apiCode ='GetCmdbInstance';
         case 3:
-            apiCode ='GetAmpAlarm';
+            apiCode ='GetAlarmPage';
             break;
         case 4:
             apiCode ='GetLastDataList';
@@ -220,8 +221,8 @@ function updateHost(index) {
         alert('主机名或操作系统未填写');
         return ;
     }
-    params.params.instanceRecord.attributes[0].attributeValue = hostName;
-    params.params.instanceRecord.attributes[5].attributeValue = osName;
+    params.amp_api_params.params.instanceRecord.attributes[0].attributeValue = hostName;
+    params.amp_api_params.params.instanceRecord.attributes[5].attributeValue = osName;
     $.postJSON(url, params,function(data){
         if (data&&data.msgCode===200) {
             alert('更新成功');

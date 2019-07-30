@@ -34,8 +34,9 @@ const paramsUnit = [
 ]   
 const bk_app_secret ="47666134-a1c6-4ec9-916b-841c708c2050",
 bk_app_code="shsnc-test",bk_username='admin',bk_url='http://192.168.50.221:8080',
-amp_user="yanshi1",amp_passwd="yanshi1";
-$.postJSON = function(url, data, callback) {
+amp_user="yanshi1",amp_passwd="yanshi1",
+snc_url = 'http://paas.bk.com:80/api/c/compapi/shsnc/snc_sync_api/'
+$.postJSON = function( data, callback) {
     data.bk_app_secret = bk_app_secret;
     data.bk_app_code = bk_app_code;
     data.bk_username = bk_username;
@@ -44,7 +45,7 @@ $.postJSON = function(url, data, callback) {
     data.amp_passwd = amp_passwd;
     return jQuery.ajax({
         'type': 'POST',
-        'url': url,
+        'url': snc_url,
         'contentType': 'application/json',
         'data': $.toJSON(data),
         'dataType': 'json',
@@ -65,12 +66,11 @@ function drawDom(domP,domC) {
 }
 
 function getData(index,dataKey) {
-    let url =urlUnit[index],params={};
+    let params={},amp_api = getAmpApi(index);
     params.amp_api_params =paramsUnit[index];
-    let amp_api = getAmpApi(index);
     params.amp_api =amp_api;
 
-    $.postJSON(url, params,function(data){
+    $.postJSON( params,function(data){
         if (data&&data.msgCode===200) {
             switch (index) {
                 case 0:
@@ -195,10 +195,10 @@ function getBaseLogTable(item) {
     getBaseLog(6);
 }
 function getBaseLog(index) {
-    let url =urlUnit[index],params ={};
+    let params ={};
     params.amp_api_params =paramsUnit[index];
     params.amp_api ='FindTaskScriptLog';
-    $.postJSON(url, params,function(data){
+    $.postJSON( params,function(data){
         let cHtml= '';
         if (data&&data.msgCode===200) {
             data.data.records.map((item,index) => {
@@ -213,7 +213,7 @@ function getBaseLog(index) {
 }
 // 更新CMDE主机 
 function updateHost(index) {
-    let url =urlUnit[index],params ={};
+    let params ={};
     params.amp_api_params =paramsUnit[index];
     params.amp_api ='EditInstance';
     let hostName = document.getElementById('hostName').value;
@@ -224,7 +224,7 @@ function updateHost(index) {
     }
     params.amp_api_params.params.instanceRecord.attributes[0].attributeValue = hostName;
     params.amp_api_params.params.instanceRecord.attributes[5].attributeValue = osName;
-    $.postJSON(url, params,function(data){
+    $.postJSON(params,function(data){
         if (data&&data.msgCode===200) {
             alert('更新成功');
         }
@@ -238,6 +238,16 @@ function getAllUser() {
     $.get(url,(data) => {
         if(data.data) {
             getAllTable(data.data);
+        }
+    });
+}
+function saveAllUser() {
+    let params = {};
+    params.amp_api = 'SyncUsers';
+    params.amp_api_params = {};
+    $.postJSON( params,function(data){
+        if (data&&data.msgCode===200) {
+            alert('同步用户成功');
         }
     });
 }

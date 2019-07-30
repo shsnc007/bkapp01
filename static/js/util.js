@@ -244,7 +244,7 @@ function getAllUser() {
 function saveAllUser() {
     let params = {};
     params.amp_api = 'SyncUsers';
-    params.amp_api_params = {};
+    params.amp_api_params = '1';
     $.postJSON( params,function(data){
         if (data&&data.msgCode===200) {
             alert('同步用户成功');

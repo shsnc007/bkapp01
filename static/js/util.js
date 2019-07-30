@@ -98,6 +98,7 @@ function getAmpApi(index) {
     switch (index) {
         case 0:
             apiCode ='GetCmdbInstance';
+            break;
         case 3:
             apiCode ='GetAlarmPage';
             break;

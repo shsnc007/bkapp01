@@ -43,7 +43,7 @@ $.postJSON = function( data, callback) {
     data.bk_app_code = bk_app_code;
     data.bk_username = bk_username;
     if (data.index) {
-        ata.amp_url = 'http://52.81.101.159.221:8083';
+        data.amp_url = 'http://52.81.101.159.221:8083';
         data.amp_user = 'admin';
         data.amp_passwd = 'shsnc!@#$%^';
     }else {
